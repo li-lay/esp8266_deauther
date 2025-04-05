@@ -13,10 +13,14 @@ function updateVersionContent(newVersionText) {
 }
 
 // Wait for DOM to be ready before updating version
-document.addEventListener("DOMContentLoaded", function () {
-  updateVersionContent("Version 2.6.1 (Gruvbox Theme)");
-  this.removeEventListener("DOMContentLoaded", arguments.callee);
-});
+var updateVersionEvent = document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    updateVersionContent("Version 2.6.1 (Gruvbox Theme)");
+  }
+);
+
+document.removeEventListener("DOMContentLoaded", updateVersionEvent);
 
 function getE(name) {
   return document.getElementById(name);
